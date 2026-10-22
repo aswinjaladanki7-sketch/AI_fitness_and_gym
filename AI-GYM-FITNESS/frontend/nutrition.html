@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Nutrition & Diet Planner | AI GYM & FITNESS ASSISTANT</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/nutrition.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <header id="main-header" class="main-header"></header>
+
+  <main class="nutrition-page">
+    <div style="margin-bottom: 2rem;">
+      <span class="badge badge-neon">PRECISION NUTRITION</span>
+      <h1 style="font-size: 2.4rem; margin-top: 0.4rem;">AI Personalized Meal Planner</h1>
+      <p style="color: var(--text-secondary); max-width: 720px;">
+        Evidence-based macronutrient distribution and micronutrient-rich meal structuring for vegetarian and non-vegetarian athletes.
+      </p>
+    </div>
+
+    <!-- TOOLBAR CONTROLS -->
+    <div class="nutrition-toolbar">
+      <!-- Diet Switcher Toggle -->
+      <div class="plan-type-toggle">
+        <div class="toggle-option diet-toggle-btn active" data-type="vegetarian">
+          🌱 Vegetarian Plan
+        </div>
+        <div class="toggle-option diet-toggle-btn" data-type="non_vegetarian">
+          🍗 Non-Vegetarian Plan
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display: flex; gap: 0.85rem; flex-wrap: wrap;">
+        <button id="btn-gen-today-diet" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          Generate Today's Plan
+        </button>
+        <button id="btn-gen-weekly-diet" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Generate 7-Day Plan
+        </button>
+      </div>
+    </div>
+
+    <!-- 7-DAY NAVIGATION TABS (Shown on 7-Day Mode) -->
+    <div class="days-tab-nav" id="weekly-days-nav" style="display: none;"></div>
+
+    <!-- DAILY MACRONUTRIENT TOTALS STRIP -->
+    <div class="daily-macro-strip">
+      <div class="strip-item">
+        <div class="strip-icon" style="background: rgba(245, 158, 11, 0.12); color: #f59e0b;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        </div>
+        <div class="strip-data">
+          <span style="color: #f59e0b;">Total Calories</span>
+          <h3 id="diet-total-cals">2050 kcal</h3>
+        </div>
+      </div>
+
+      <div class="strip-item">
+        <div class="strip-icon" style="background: rgba(0, 245, 155, 0.12); color: var(--accent-neon);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="strip-data">
+          <span style="color: var(--accent-neon);">Total Protein</span>
+          <h3 id="diet-total-prot">138g</h3>
+        </div>
+      </div>
+
+      <div class="strip-item">
+        <div class="strip-icon" style="background: rgba(0, 212, 255, 0.12); color: var(--accent-blue);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </div>
+        <div class="strip-data">
+          <span style="color: var(--accent-blue);">Carbohydrates</span>
+          <h3 id="diet-total-carbs">240g</h3>
+        </div>
+      </div>
+
+      <div class="strip-item">
+        <div class="strip-icon" style="background: rgba(168, 85, 247, 0.12); color: #a855f7;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>
+        </div>
+        <div class="strip-data">
+          <span style="color: #a855f7;">Dietary Fat</span>
+          <h3 id="diet-total-fat">58g</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEALS LIST (5 MEALS) -->
+    <div class="meals-grid" id="meals-list-container">
+      <!-- Populated by js/nutrition.js -->
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div class="disclaimer-banner" style="margin-top: 3rem;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+      <p>
+        <strong>Nutrition Guidance:</strong> Nutritional estimations are derived from verified food databases. Always adjust portion sizes to match personal digestive tolerability and consult a clinical nutritionist for specialized medical conditions.
+      </p>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/nutrition.js"></script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Workout Trainer | AI GYM & FITNESS ASSISTANT</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ai-trainer.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Google MediaPipe Pose CDN Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <header id="main-header" class="main-header"></header>
+
+  <main class="ai-trainer-page">
+    <!-- EXERCISE SELECTOR TOOLBAR -->
+    <div class="exercise-selector-bar">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <span class="badge badge-neon">SELECT EXERCISE</span>
+        <div class="exercise-pills-nav">
+          <button class="ex-pill-btn active" data-exercise="squats">Squats</button>
+          <button class="ex-pill-btn" data-exercise="push-ups">Push-ups</button>
+          <button class="ex-pill-btn" data-exercise="lunges">Lunges</button>
+          <button class="ex-pill-btn" data-exercise="bicep-curls">Bicep Curls</button>
+          <button class="ex-pill-btn" data-exercise="shoulder-press">Shoulder Press</button>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <button id="btn-toggle-audio" class="btn btn-outline btn-sm">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+          Audio On
+        </button>
+        <button id="btn-start-camera" class="btn btn-primary btn-sm">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+          Enable Camera & Begin
+        </button>
+        <button id="btn-stop-camera" class="btn btn-outline btn-sm" style="display: none; border-color: rgba(239,68,68,0.4); color: var(--error);">
+          Stop Camera
+        </button>
+        <button id="btn-end-session" class="btn btn-secondary btn-sm">
+          Finish Workout
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN AI STUDIO LAYOUT -->
+    <div class="studio-layout">
+      <!-- VIDEO VIEWPORT WITH HUD -->
+      <div class="viewport-card">
+        <video id="camera-video" playsinline muted></video>
+        <canvas id="skeleton-canvas"></canvas>
+
+        <!-- PRIVACY / STANDBY PLACEHOLDER -->
+        <div class="camera-placeholder" id="camera-placeholder">
+          <div class="cam-icon-box">
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+          </div>
+          <h2 style="font-size: 1.8rem; font-weight: 800;">AI Vision Camera Standby</h2>
+          <p style="color: var(--text-secondary); max-width: 460px; font-size: 0.95rem;">
+            Click <strong>"Enable Camera & Begin"</strong> to start real-time computer vision posture analysis, skeletal joint trigonometry, and automated repetition tracking.
+          </p>
+
+          <div class="privacy-notice-badge">
+            <strong style="color: var(--accent-neon);">🔒 Privacy Protection:</strong> Camera access is used exclusively for on-device posture analysis. No video or images are recorded, stored, or transmitted to any server.
+          </div>
+
+          <button class="btn btn-primary btn-lg" onclick="startCameraSession()" style="margin-top: 0.5rem;">
+            Grant Permission & Start Coach ➜
+          </button>
+        </div>
+
+        <!-- FLOATING HUD LAYER -->
+        <div class="hud-layer">
+          <!-- Top HUD Bar -->
+          <div class="hud-top-bar">
+            <div class="hud-chip">
+              <span class="live-dot"></span>
+              <span class="live-indicator">AI VISION TRACKER</span>
+              <span style="color: var(--text-muted);">|</span>
+              <strong id="hud-active-exercise-name" style="color: var(--accent-neon);">SQUATS</strong>
+            </div>
+
+            <div class="hud-chip">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span id="hud-session-timer" style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700;">00:00</span>
+            </div>
+          </div>
+
+          <!-- Real-Time Correction Feedback Banner -->
+          <div class="hud-feedback-banner state-correct" id="hud-feedback-banner">
+            <span>✓</span> <span>Position yourself in frame</span>
+          </div>
+
+          <!-- Bottom HUD Bar -->
+          <div class="hud-bottom-bar">
+            <!-- Repetition Counter Box -->
+            <div class="hud-rep-counter-box">
+              <span class="hud-rep-number" id="hud-rep-number">0</span>
+              <span class="hud-rep-label">REPETITIONS</span>
+            </div>
+
+            <!-- Joint Angle & Movement State -->
+            <div style="display: flex; gap: 0.85rem;">
+              <div class="hud-chip">
+                <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Angle</span>
+                <strong id="hud-joint-angle" style="font-family: var(--font-heading); font-size: 1.25rem; color: var(--accent-blue);">180°</strong>
+              </div>
+              <div class="hud-chip">
+                <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Stage</span>
+                <strong id="hud-exercise-state" style="font-family: var(--font-heading); font-size: 1rem; color: var(--accent-neon);">READY</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR ANALYTICS PANEL -->
+      <div class="analytics-panel">
+        <!-- Circular Form Score Gauge -->
+        <div class="score-widget-card">
+          <span style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 0.08em;">
+            Kinematic Form Score
+          </span>
+
+          <div class="score-circle-wrapper">
+            <svg class="score-circle-svg" viewBox="0 0 140 140">
+              <circle class="circle-bg" cx="70" cy="70" r="60"></circle>
+              <circle class="circle-progress" id="hud-score-circle-progress" cx="70" cy="70" r="60"></circle>
+            </svg>
+            <div class="score-circle-content">
+              <span class="score-val-large" id="hud-form-score-val">95</span>
+              <span class="score-denom">/ 100</span>
+            </div>
+          </div>
+
+          <div class="form-category-pill" id="hud-form-category-pill">
+            Excellent Form
+          </div>
+        </div>
+
+        <!-- Live Session Stats -->
+        <div class="session-stats-card">
+          <div style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 0.25rem;">
+            Session Telemetry
+          </div>
+
+          <div class="stat-row">
+            <span class="lbl">Estimated Calories</span>
+            <span class="val" id="hud-calories-burned" style="color: #f59e0b;">0 kcal</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="lbl">Pose Confidence</span>
+            <span class="val" style="color: var(--accent-neon);">98.4%</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="lbl">Biomechanical Rule</span>
+            <span class="val" style="font-size: 0.8rem; color: var(--accent-blue);">Knee Flexion ≥ 90°</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="lbl">Voice Coach</span>
+            <span class="val" style="color: var(--text-primary);">Web Speech API</span>
+          </div>
+        </div>
+
+        <!-- Privacy Card Notice -->
+        <div style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; background: rgba(12, 16, 23, 0.7); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+          <strong style="color: var(--text-secondary);">College Project Note:</strong>
+          Engineered using HTML5 MediaDevices, Google MediaPipe Pose ML landmarks, and trigonometric angle calculations running client-side with zero external streaming latency.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- WORKOUT COMPLETE SUMMARY MODAL -->
+  <div class="modal-backdrop" id="session-complete-modal">
+    <div class="completion-modal">
+      <div class="modal-trophy-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+      </div>
+
+      <span class="badge badge-neon">WORKOUT FINISHED</span>
+      <h2 style="font-size: 2.2rem; font-weight: 800;">Workout Complete!</h2>
+      <p style="color: var(--text-secondary); font-size: 0.95rem;">Outstanding performance. Your workout telemetry has been logged to your progress tracking history.</p>
+
+      <div style="width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1rem 0;">
+        <div style="background: rgba(12, 16, 23, 0.8); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Duration</div>
+          <div id="modal-duration" style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: var(--text-primary);">12 min</div>
+        </div>
+        <div style="background: rgba(12, 16, 23, 0.8); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Total Reps</div>
+          <div id="modal-reps" style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: var(--accent-neon);">32</div>
+        </div>
+        <div style="background: rgba(12, 16, 23, 0.8); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Avg Form Score</div>
+          <div id="modal-score" style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: var(--accent-blue);">92%</div>
+        </div>
+        <div style="background: rgba(12, 16, 23, 0.8); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+          <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Burned</div>
+          <div id="modal-cals" style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: #f59e0b;">110 kcal</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 1rem; width: 100%;">
+        <button class="btn btn-primary" onclick="closeCompletionModal()" style="flex: 1;">
+          Continue to Dashboard ➜
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ai-trainer.js"></script>
+</body>
+</html>

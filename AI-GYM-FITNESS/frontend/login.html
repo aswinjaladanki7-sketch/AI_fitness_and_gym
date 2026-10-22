@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Athlete Login | AI GYM & FITNESS ASSISTANT</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .auth-container {
+      max-width: 480px;
+      margin: 4.5rem auto 5rem;
+      padding: 0 1.5rem;
+    }
+
+    .demo-accounts-card {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      background: rgba(12, 16, 23, 0.7);
+      border: 1px dashed rgba(0, 212, 255, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <header id="main-header" class="main-header"></header>
+
+  <div class="auth-container">
+    <div class="glass-card">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <div class="logo-icon" style="margin: 0 auto 1rem; width: 48px; height: 48px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 5v14M18 5v14M2 9h4M18 9h4M2 15h4M18 15h4M6 12h12"/></svg>
+        </div>
+        <h2 style="font-size: 2rem;">Welcome Back</h2>
+        <p style="color: var(--text-secondary); font-size: 0.92rem; margin-top: 0.25rem;">Sign in to access your AI fitness & nutrition intelligence.</p>
+      </div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label class="form-label" for="login-email">Email Address</label>
+          <input type="email" id="login-email" class="form-control" placeholder="aswin@fitness.srmist.edu.in" value="aswin@fitness.srmist.edu.in" required>
+        </div>
+
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between;">
+            <label class="form-label" for="login-password">Password</label>
+            <a href="#" style="font-size: 0.8rem; color: var(--accent-blue);" onclick="showToast('For viva demo, any password or Password123! works.', 'info'); return false;">Forgot?</a>
+          </div>
+          <input type="password" id="login-password" class="form-control" placeholder="••••••••" value="Password123!" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem; padding: 0.9rem;">
+          Sign In to Portal
+        </button>
+      </form>
+
+      <!-- Instant Quick-Demo Profiles for Viva & Reviews -->
+      <div class="demo-accounts-card">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+          <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--accent-blue); letter-spacing: 0.05em;">
+            ⚡ Quick 1-Click Demo Profiles (For Review)
+          </span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+          <button class="btn btn-outline btn-sm" onclick="fillDemoUser('john')" style="justify-content: flex-start; text-align: left; padding: 0.6rem 0.85rem;">
+            <span style="color: var(--accent-neon); font-size: 1.1rem; line-height: 1;">●</span>
+            <div>
+              <div style="font-weight: 600;">Aswinkumar J</div>
+              <div style="font-size: 0.72rem; color: var(--text-muted);">Weight Loss • Gym • Non-Vegetarian</div>
+            </div>
+          </button>
+          <button class="btn btn-outline btn-sm" onclick="fillDemoUser('priya')" style="justify-content: flex-start; text-align: left; padding: 0.6rem 0.85rem;">
+            <span style="color: var(--accent-blue); font-size: 1.1rem; line-height: 1;">●</span>
+            <div>
+              <div style="font-weight: 600;">Priya Sharma</div>
+              <div style="font-size: 0.72rem; color: var(--text-muted);">General Fitness • Home • Vegetarian</div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 1.5rem; font-size: 0.88rem; color: var(--text-secondary);">
+        New to AI Gym? <a href="register.html" style="color: var(--accent-neon); font-weight: 600;">Create Account</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

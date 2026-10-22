@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress & Biometric Telemetry | AI GYM & FITNESS ASSISTANT</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/progress.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <header id="main-header" class="main-header"></header>
+
+  <main class="progress-page">
+    <div style="margin-bottom: 2rem;">
+      <span class="badge badge-neon">ATHLETE PROGRESSION</span>
+      <h1 style="font-size: 2.4rem; margin-top: 0.4rem;">Biometric & Performance Tracking</h1>
+      <p style="color: var(--text-secondary); max-width: 720px;">
+        Track historical weight logs, BMI trends, exercise session performance, and progress toward your target body composition.
+      </p>
+    </div>
+
+    <!-- MILESTONE CARDS BANNER (5 STATS) -->
+    <div class="progress-summary-grid">
+      <div class="summary-card">
+        <span class="summary-lbl">Starting Weight</span>
+        <span class="summary-val" id="prog-start-weight">80.5 kg</span>
+      </div>
+      <div class="summary-card">
+        <span class="summary-lbl">Current Weight</span>
+        <span class="summary-val" id="prog-current-weight">78.0 kg</span>
+      </div>
+      <div class="summary-card highlight-blue">
+        <span class="summary-lbl">Target Goal</span>
+        <span class="summary-val" id="prog-target-weight">70.0 kg</span>
+      </div>
+      <div class="summary-card highlight-neon">
+        <span class="summary-lbl">Total Lost</span>
+        <span class="summary-val" id="prog-weight-lost">2.5 kg</span>
+      </div>
+      <div class="summary-card">
+        <span class="summary-lbl">Remaining to Goal</span>
+        <span class="summary-val" id="prog-weight-remaining">8.0 kg</span>
+      </div>
+    </div>
+
+    <!-- PROGRESS GRID: Chart + Log Form -->
+    <div class="progress-main-grid">
+      <!-- Weight vs Date Chart -->
+      <div class="glass-card" style="padding: 1.8rem; display: flex; flex-direction: column;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 700;">Weight Telemetry History</h3>
+            <p style="font-size: 0.82rem; color: var(--text-secondary);">Logged bodyweight data points over time.</p>
+          </div>
+          <span class="badge badge-neon">TRENDLINE ACTIVE</span>
+        </div>
+
+        <div style="position: relative; height: 320px; width: 100%;">
+          <canvas id="prog-weight-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- Add Weight Log Entry Form -->
+      <div class="glass-card" style="padding: 1.8rem;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-neon)" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          Record Weigh-In
+        </h3>
+
+        <form id="log-weight-form">
+          <div class="form-group">
+            <label class="form-label" for="log-weight-input">New Weight (kg) *</label>
+            <input type="number" id="log-weight-input" class="form-control" step="0.1" min="30" max="250" placeholder="e.g. 77.8" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="log-date-input">Weigh-in Date *</label>
+            <input type="date" id="log-date-input" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="log-notes-input">Notes / Energy Levels</label>
+            <input type="text" id="log-notes-input" class="form-control" placeholder="e.g. Morning fasted, feeling energized">
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
+            Save Weigh-In Entry
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- WEIGHT HISTORY TIMELINE TABLE -->
+    <div class="history-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3 style="font-size: 1.25rem; font-weight: 700;">Historical Weigh-in Log</h3>
+        <span style="font-size: 0.8rem; color: var(--text-muted);">Stored securely in MySQL relational records</span>
+      </div>
+
+      <div class="history-table-container">
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Weight (kg)</th>
+              <th>Calculated BMI</th>
+              <th>Athlete Notes</th>
+            </tr>
+          </thead>
+          <tbody id="prog-history-tbody">
+            <!-- Populated by js/progress.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/progress.js"></script>
+</body>
+</html>

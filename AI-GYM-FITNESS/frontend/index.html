@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI GYM & FITNESS ASSISTANT | SRM Institute of Science and Technology</title>
+  <meta name="description" content="AI-Powered Personal Gym & Fitness Assistant: Real-time workout posture analysis, personalized nutrition planning, and automated fitness metrics tracking.">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- University Bar & Main Header rendered dynamically via js/main.js -->
+  <header id="main-header" class="main-header"></header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span>
+        <span>NEXT-GEN COMPUTER VISION FITNESS</span>
+      </div>
+
+      <h1 class="hero-title">
+        YOUR AI-POWERED <br>
+        <span class="gradient-text">PERSONAL TRAINER</span>
+      </h1>
+
+      <div class="hero-tagline">
+        "Train Smarter. Eat Better. Move Better."
+      </div>
+
+      <p class="hero-subtitle">
+        Your personal AI trainer, nutrition planner, and fitness companion. Experience real-time exercise posture correction, automatic repetition counting, and bespoke diet strategies tailored to your exact physiology.
+      </p>
+
+      <div class="hero-actions">
+        <a href="register.html" class="btn btn-primary btn-lg">
+          START YOUR FITNESS JOURNEY
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+        <a href="ai-trainer.html" class="btn btn-secondary btn-lg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+          TRY AI WORKOUT
+        </a>
+      </div>
+
+      <div class="disclaimer-banner" style="margin-top: 1.5rem;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <p>
+          <strong>Health Disclaimer:</strong> This application provides general fitness and nutrition estimates for informational purposes only. It is not a substitute for professional medical, nutritional, or fitness advice.
+        </p>
+      </div>
+    </div>
+
+    <!-- HERO VISUAL / INTERACTIVE CANVAS -->
+    <div class="hero-visual-wrapper">
+      <div class="ai-visual-card">
+        <div class="visual-screen-header">
+          <div class="screen-dot-group">
+            <span class="screen-dot dot-red"></span>
+            <span class="screen-dot dot-yellow"></span>
+            <span class="screen-dot dot-green"></span>
+          </div>
+          <span>AI Vision Pose Engine • 60 FPS</span>
+          <span style="color: var(--accent-neon); font-size: 0.75rem;">LIVE SCAN</span>
+        </div>
+
+        <div class="visual-canvas-container">
+          <canvas id="hero-pose-canvas"></canvas>
+
+          <!-- Floating AI HUD Chips -->
+          <div class="hero-hud-chip chip-rep-count">
+            <div style="display: flex; flex-direction: column;">
+              <span style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase;">Repetitions</span>
+              <span class="rep-num" id="hero-rep-counter">14</span>
+            </div>
+            <span class="badge badge-neon" style="font-size: 0.7rem;">SQUATS</span>
+          </div>
+
+          <div class="hero-hud-chip chip-form-score">
+            <div style="display: flex; flex-direction: column; align-items: flex-end;">
+              <span style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase;">Form Score</span>
+              <span class="score-pct">94%</span>
+            </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="features-section">
+    <div class="section-header">
+      <span class="section-tag">COMPREHENSIVE CAPABILITIES</span>
+      <h2 class="section-title">INTELLIGENT ATHLETIC ENGINEERING</h2>
+      <p class="section-desc">Six coordinated modules combining deep kinematic computer vision with evidence-based exercise physiology and personalized dietetics.</p>
+    </div>
+
+    <div class="features-grid">
+      <!-- 1. Smart Fitness Analysis -->
+      <div class="feature-card">
+        <div class="feature-icon-wrapper">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+        </div>
+        <h3 class="feature-title">1. Smart Fitness Analysis</h3>
+        <p class="feature-text">Precision evaluation of BMI, Mifflin-St Jeor BMR, Total Daily Energy Expenditure (TDEE), and safe caloric floor management.</p>
+      </div>
+
+      <!-- 2. AI Workout Tracking -->
+      <div class="feature-card">
+        <div class="feature-icon-wrapper">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+        </div>
+        <h3 class="feature-title">2. AI Workout Tracking</h3>
+        <p class="feature-text">High-accuracy 33-landmark skeletal detection using MediaPipe Pose. Automated repetition counting with finite-state debouncing.</p>
+      </div>
+
+      <!-- 3. Personalized Nutrition -->
+      <div class="feature-card">
+        <div class="feature-icon-wrapper">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+        </div>
+        <h3 class="feature-title">3. Personalized Nutrition</h3>
+        <p class="feature-text">Dedicated Vegetarian and Non-Vegetarian nutrition pathways with allergen exclusion (dairy, gluten, nuts, soy) and 5-meal macro breakdown.</p>
+      </div>
+
+      <!-- 4. Real-Time Form Correction -->
+      <div class="feature-card">
+        <div class="feature-icon-wrapper">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        </div>
+        <h3 class="feature-title">4. Real-Time Form Correction</h3>
+        <p class="feature-text">Instant auditory and visual posture cues: "Go lower", "Keep back straight", "Keep elbows stable". Dynamic 0-100 Form Score indicator.</p>
+      </div>
+
+      <!-- 5. Progress Monitoring -->
+      <div class="feature-card">
+        <div class="feature-icon-wrapper">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+        </div>
+        <h3 class="feature-title">5. Progress Monitoring</h3>
+        <p class="feature-text">Interactive telemetry charts for body mass history, caloric expenditure, workout regularity, and milestone completion percentages.</p>
+      </div>
+
+      <!-- 6. Smart Workout Planning -->
+      <div class="feature-card">
+        <div class="feature-icon-wrapper">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        </div>
+        <h3 class="feature-title">6. Smart Workout Planning</h3>
+        <p class="feature-text">Custom routines formulated for Weight Loss, Muscle Building, Pure Strength, or Beginner Mobility across Gym or Home environments.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT REVIEW SHOWCASE SECTION -->
+  <section class="review-showcase-section">
+    <div class="review-container">
+      <div>
+        <span class="review-badge">SRM INSTITUTE OF SCIENCE AND TECHNOLOGY</span>
+        <h2 style="font-size: 2.2rem; line-height: 1.2;">Department of Computer Science & Engineering</h2>
+        <p style="color: var(--text-secondary); margin-top: 0.75rem;">
+          Course: <strong>21CSC203P - PROJECT</strong><br>
+          Title: <strong>AI GYM & FITNESS ASSISTANT</strong>
+        </p>
+
+        <ul class="review-list">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span><strong>Novel Multi-Model Integration:</strong> Biomechanical Pose Estimation + Scientific Dietetics.</span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span><strong>Transparent Form Scoring:</strong> 0-100 rubric evaluating depth, spinal curvature, and cadence.</span>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span><strong>User Privacy Guarantee:</strong> Zero raw video transmitted to external servers.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem; align-items: center; justify-content: center; background: rgba(12,16,23,0.7); padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);">
+        <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.1em;">College Project Demo</div>
+        <div style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; text-align: center;">
+          Ready for Review Viva & Live Demonstration
+        </div>
+        <button class="btn btn-secondary" onclick="openProjectReviewModal()">
+          Open Viva Architecture Panel
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="logo-text" style="margin-bottom: 0.8rem;">
+          <span>AI GYM & FITNESS</span>
+          <span class="logo-sub">ASSISTANT</span>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; max-width: 340px;">
+          Next-generation personal trainer powered by computer vision, biomechanical joint trigonometry, and automated nutrition algorithms.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Modules</h4>
+        <ul>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="ai-trainer.html">AI Camera Coach</a></li>
+          <li><a href="fitness.html">Fitness Calculator</a></li>
+          <li><a href="nutrition.html">Diet Planner</a></li>
+          <li><a href="workouts.html">Workout Generator</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Academic Info</h4>
+        <ul>
+          <li><a href="#" onclick="openProjectReviewModal(); return false;">Project Overview</a></li>
+          <li><a href="#" onclick="openProjectReviewModal(); return false;">System Architecture</a></li>
+          <li><a href="#" onclick="openProjectReviewModal(); return false;">Methods & Rubric</a></li>
+          <li><a href="#" onclick="openProjectReviewModal(); return false;">Privacy & Safety</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Institution</h4>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+          SRM INSTITUTE OF SCIENCE AND TECHNOLOGY<br>
+          School of Computing<br>
+          Department of CSE<br>
+          21CSC203P - PROJECT
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 AI GYM & FITNESS ASSISTANT. All rights reserved.</div>
+      <div style="color: var(--accent-neon);">SRMIST CSE 21CSC203P PROJECT</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Hero Animated Canvas
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('hero-pose-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      function resizeHeroCanvas() {
+        canvas.width = canvas.parentElement.clientWidth || 500;
+        canvas.height = canvas.parentElement.clientHeight || 400;
+      }
+      resizeHeroCanvas();
+      window.addEventListener('resize', resizeHeroCanvas);
+
+      let t = 0;
+      let heroReps = 14;
+      const repEl = document.getElementById('hero-rep-counter');
+
+      function drawHeroSkel() {
+        t += 0.04;
+        const w = canvas.width;
+        const h = canvas.height;
+        ctx.clearRect(0, 0, w, h);
+
+        const wave = (Math.sin(t) + 1) / 2; // 0 to 1
+        const squatDepth = wave * 0.16;
+
+        // Pulse rep count at top of squat
+        if (Math.abs(wave - 0.05) < 0.03 && Math.sin(t) < 0) {
+          heroReps++;
+          if (repEl) repEl.innerText = heroReps;
+        }
+
+        // Draw glowing grid floor
+        ctx.strokeStyle = 'rgba(0, 212, 255, 0.08)';
+        ctx.lineWidth = 1;
+        for (let x = 0; x < w; x += 35) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, h);
+          ctx.stroke();
+        }
+
+        const headY = 0.22 + squatDepth;
+        const shoulderY = 0.34 + squatDepth;
+        const hipY = 0.54 + (squatDepth * 1.2);
+        const kneeY = 0.70 + (squatDepth * 0.6);
+        const ankleY = 0.88;
+
+        const pts = {
+          head: { x: w * 0.5, y: h * headY },
+          lShoulder: { x: w * 0.42, y: h * shoulderY },
+          rShoulder: { x: w * 0.58, y: h * shoulderY },
+          lElbow: { x: w * 0.35, y: h * (shoulderY + 0.12) },
+          rElbow: { x: w * 0.65, y: h * (shoulderY + 0.12) },
+          lWrist: { x: w * 0.42, y: h * (shoulderY + 0.08) },
+          rWrist: { x: w * 0.58, y: h * (shoulderY + 0.08) },
+          lHip: { x: w * 0.45, y: h * hipY },
+          rHip: { x: w * 0.55, y: h * hipY },
+          lKnee: { x: w * 0.41 - (wave * 0.03 * w), y: h * kneeY },
+          rKnee: { x: w * 0.59 + (wave * 0.03 * w), y: h * kneeY },
+          lAnkle: { x: w * 0.43, y: h * ankleY },
+          rAnkle: { x: w * 0.57, y: h * ankleY }
+        };
+
+        const lines = [
+          [pts.head, pts.lShoulder], [pts.head, pts.rShoulder],
+          [pts.lShoulder, pts.rShoulder],
+          [pts.lShoulder, pts.lElbow], [pts.lElbow, pts.lWrist],
+          [pts.rShoulder, pts.rElbow], [pts.rElbow, pts.rWrist],
+          [pts.lShoulder, pts.lHip], [pts.rShoulder, pts.rHip],
+          [pts.lHip, pts.rHip],
+          [pts.lHip, pts.lKnee], [pts.lKnee, pts.lAnkle],
+          [pts.rHip, pts.rKnee], [pts.rKnee, pts.rAnkle]
+        ];
+
+        // Draw lines
+        ctx.strokeStyle = '#00f59b';
+        ctx.lineWidth = 3.5;
+        ctx.shadowColor = 'rgba(0, 245, 155, 0.7)';
+        ctx.shadowBlur = 15;
+        lines.forEach(([p1, p2]) => {
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        });
+
+        // Draw joint nodes
+        Object.values(pts).forEach(pt => {
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, 5.5, 0, 2 * Math.PI);
+          ctx.fillStyle = '#00d4ff';
+          ctx.shadowColor = 'rgba(0, 212, 255, 0.8)';
+          ctx.shadowBlur = 10;
+          ctx.fill();
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        });
+
+        requestAnimationFrame(drawHeroSkel);
+      }
+      drawHeroSkel();
+    });
+  </script>
+</body>
+</html>

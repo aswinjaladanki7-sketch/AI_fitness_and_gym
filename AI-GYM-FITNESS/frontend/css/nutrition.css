@@ -1,0 +1,204 @@
+/* ============================================================
+   AI GYM & FITNESS ASSISTANT - AI Nutrition Styles
+   ============================================================ */
+
+.nutrition-page {
+  padding: 2.5rem 2rem 5rem;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+/* Control Toolbar */
+.nutrition-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.plan-type-toggle {
+  display: inline-flex;
+  padding: 0.35rem;
+  background: rgba(12, 16, 23, 0.9);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  gap: 0.35rem;
+}
+
+.toggle-option {
+  padding: 0.55rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--text-secondary);
+}
+
+.toggle-option.active {
+  background: var(--accent-neon);
+  color: #05080d;
+  box-shadow: 0 2px 10px var(--accent-neon-glow);
+}
+
+/* Day selector tabs for 7-Day Plan */
+.days-tab-nav {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.day-tab-btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-full);
+  background: rgba(18, 24, 36, 0.7);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.day-tab-btn:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.day-tab-btn.active {
+  background: var(--accent-blue);
+  color: #05080d;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 15px var(--accent-blue-glow);
+}
+
+/* Macro Summary Bar */
+.daily-macro-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.strip-item {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.strip-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.strip-data h3 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.strip-data span {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Meals List */
+.meals-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.meal-card {
+  padding: 1.75rem 2rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  display: grid;
+  grid-template-columns: 180px 1fr 280px;
+  align-items: center;
+  gap: 2rem;
+  transition: all var(--transition-normal);
+}
+
+.meal-card:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateX(4px);
+}
+
+.meal-slot-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.slot-name {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.slot-time {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.food-details h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.food-portion {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-top: 0.3rem;
+}
+
+.food-macro-pills {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.macro-chip {
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: rgba(12, 16, 23, 0.8);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 58px;
+}
+
+.macro-chip .val {
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+}
+
+.macro-chip .lbl {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}

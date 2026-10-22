@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Workout Planner | AI GYM & FITNESS ASSISTANT</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/workout.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <header id="main-header" class="main-header"></header>
+
+  <main class="workout-page">
+    <div class="workout-header-bar">
+      <div>
+        <span class="badge badge-neon">PERIODIZED TRAINING</span>
+        <h1 style="font-size: 2.4rem; margin-top: 0.4rem;">AI Workout Routine Generator</h1>
+        <p style="color: var(--text-secondary); max-width: 680px;">
+          Intelligent set, rep, and tempo programming tailored to your strength level, training frequency, and available equipment.
+        </p>
+      </div>
+
+      <!-- Filters -->
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <div class="form-group" style="margin: 0; min-width: 180px;">
+          <label class="form-label" style="font-size: 0.75rem;" for="workout-goal-filter">Fitness Goal</label>
+          <select id="workout-goal-filter" class="form-control" style="padding: 0.6rem 0.9rem;">
+            <option value="weight_loss" selected>Weight Loss</option>
+            <option value="muscle_building">Muscle Building</option>
+            <option value="strength">Strength</option>
+            <option value="general_fitness">General Fitness</option>
+            <option value="beginner">Beginner Mobility</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin: 0; min-width: 150px;">
+          <label class="form-label" style="font-size: 0.75rem;" for="workout-location-filter">Location</label>
+          <select id="workout-location-filter" class="form-control" style="padding: 0.6rem 0.9rem;">
+            <option value="gym" selected>Gym Equipment</option>
+            <option value="home">Home / Bodyweight</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROUTINE BANNER -->
+    <div class="routine-banner">
+      <div class="routine-banner-text">
+        <h2 id="routine-title">HIGH-INTENSITY METABOLIC SPLIT</h2>
+        <p id="routine-focus">Target Focus: Caloric burn, core stabilization & lean muscle retention.</p>
+      </div>
+
+      <div class="routine-meta-pills">
+        <div class="meta-pill">
+          <span class="pill-val" id="routine-days">4 Days/wk</span>
+          <span class="pill-lbl">FREQUENCY</span>
+        </div>
+        <div class="meta-pill">
+          <span class="pill-val" id="routine-duration" style="color: var(--accent-blue);">45 min</span>
+          <span class="pill-lbl">DURATION</span>
+        </div>
+        <div class="meta-pill">
+          <span class="pill-val" id="routine-count" style="color: #f59e0b;">5 Exercises</span>
+          <span class="pill-lbl">TOTAL LIFTS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXERCISES GRID -->
+    <div class="exercises-grid" id="workout-exercises-container">
+      <!-- Populated by js/workout.js -->
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/workout.js"></script>
+</body>
+</html>

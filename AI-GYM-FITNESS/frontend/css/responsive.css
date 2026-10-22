@@ -1,0 +1,193 @@
+/* ============================================================
+   AI GYM & FITNESS ASSISTANT - Responsive Stylesheet
+   Adapts for Desktop, Laptop, Tablet, and Mobile screens
+   ============================================================ */
+
+/* Mobile Bottom Navigation (Hidden on Desktop) */
+.mobile-nav-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(7, 9, 14, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border-subtle);
+  z-index: 1000;
+  padding: 0.5rem 0.75rem calc(0.5rem + env(safe-area-inset-bottom));
+  justify-content: space-around;
+  align-items: center;
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  padding: 0.35rem 0.5rem;
+}
+
+.mobile-nav-item.active, .mobile-nav-item:hover {
+  color: var(--accent-neon);
+}
+
+.mobile-nav-item svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Tablet & Smaller Screens (<= 1024px) */
+@media (max-width: 1024px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 4rem 1.5rem;
+    gap: 3rem;
+  }
+
+  .hero-content {
+    align-items: center;
+  }
+
+  .hero-badge {
+    align-self: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fitness-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .studio-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .progress-summary-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .progress-main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .meal-card {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .food-macro-pills {
+    justify-content: flex-start;
+  }
+
+  .review-container {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Mobile Screens (<= 768px) */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 75px; /* accommodate bottom nav */
+  }
+
+  .mobile-nav-bar {
+    display: flex;
+  }
+
+  .nav-menu, .header-cta {
+    display: none; /* replaced by mobile nav bar */
+  }
+
+  .hero-title {
+    font-size: 2.3rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .exercises-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .daily-macro-strip {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .progress-summary-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  /* Camera Adaptation for mobile portrait view */
+  .viewport-card {
+    aspect-ratio: 4 / 3;
+  }
+
+  .hud-rep-counter-box {
+    padding: 0.5rem 1rem;
+  }
+
+  .hud-rep-number {
+    font-size: 2.2rem;
+  }
+
+  .hud-feedback-banner {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .score-circle-wrapper {
+    width: 110px;
+    height: 110px;
+  }
+}
