@@ -29,6 +29,7 @@ wheels/
 venv/
 ENV/
 env/
+test_venv/
 
 # Java class files & build artifacts
 *.class
